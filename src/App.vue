@@ -2,7 +2,7 @@
   <div id="app">
     <site-header></site-header>
     <equipment-list :equipment="equipment"></equipment-list>
-    <div class="details">
+    <div class="details-box">
       <h2>Find Your Loot</h2>
       <equipment-details :item="selectedEquipment"></equipment-details>
     </div>
@@ -41,14 +41,24 @@ export default {
 </script>
 
 <style>
-.details {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.details-box {
   min-height: 50px;
   background-color: whitesmoke;
   padding: 10px;
   font-family: sans-serif;
+  background-image: url('./assets/dndlogo.png');
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
 }
 
 h2 {
   font-size: 40px;
+  margin-left: 40px;
 }
 </style>

@@ -46,6 +46,7 @@ export default {
 <style lang="css" scoped>
 #equipmentList {
   padding: 20px;
+  padding-left: 50px;
   margin-bottom: 10px;
   background-color: silver;
 }
@@ -57,11 +58,9 @@ input {
 
 select {
   margin-left: 10px;
-  height: 20px;
-  padding: 16px 20px;
-  border: none;
-  border-radius: 0;
-  background-color: #f1f1f1;
+  width: 250px;
+  height: 25px;
+  background-color: whitesmoke;
 }
 
 </style>
