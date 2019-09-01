@@ -2,7 +2,10 @@
   <div id="app">
     <site-header></site-header>
     <equipment-list :equipment="equipment"></equipment-list>
-    <equipment-details :item="selectedEquipment"></equipment-details>
+    <div class="details">
+      <h2>Find Your Loot</h2>
+      <equipment-details :item="selectedEquipment"></equipment-details>
+    </div>
   </div>
 </template>
 
@@ -38,7 +41,14 @@ export default {
 </script>
 
 <style>
-#app {
+.details {
+  min-height: 50px;
+  background-color: whitesmoke;
+  padding: 10px;
+  font-family: sans-serif;
+}
 
+h2 {
+  font-size: 40px;
 }
 </style>

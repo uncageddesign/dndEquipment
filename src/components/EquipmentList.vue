@@ -3,7 +3,7 @@
     <form v-on:submit.prevent>
       <input type="text" v-model="search" placeholder="search for item" v-on:keyup="searchForItem">
       <select v-on:change="handleSelect" v-model="selectedItem">
-        <option disabled value="">Select Item</option>
+        <option disabled value="Select Item">Select Item</option>
         <option v-for="item in equipment" :value="item">{{item.name}}</option>
       </select>
     </form>
@@ -44,4 +44,24 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#equipmentList {
+  padding: 20px;
+  margin-bottom: 10px;
+  background-color: silver;
+}
+
+input {
+  width: 250px;
+  height: 20px;
+}
+
+select {
+  margin-left: 10px;
+  height: 20px;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 0;
+  background-color: #f1f1f1;
+}
+
 </style>
