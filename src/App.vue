@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <site-header></site-header>
+    <equipment-list :equipment="equipment"></equipment-list>
+    <equipment-details :item="selectedEquipment"></equipment-details>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EquipmentList from './components/EquipmentList.vue';
+import EquipmentDetails from './components/EquipmentDetails.vue';
+import SiteHeader from './components/SiteHeader.vue';
+import {eventBus} from './main.js';
 
 export default {
   name: 'app',
+  data(){
+    return {
+      equipment: [],
+      selectedEquipment: null
+    }
+  },
+  mounted(){
+    fetch('http://www.dnd5eapi.co/api/equipment/')
+    .then(res => res.json())
+    .then(equipment => this.equipment = equipment.results)
+
+    eventBus.$on('equipment-selected', (item) => {
+      this.selectedEquipment = item;
+    })
+  },
   components: {
-    HelloWorld
+    'equipment-list': EquipmentList,
+    'equipment-details': EquipmentDetails,
+    'site-header': SiteHeader
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
 }
 </style>
