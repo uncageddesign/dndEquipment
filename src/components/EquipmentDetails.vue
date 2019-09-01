@@ -2,17 +2,18 @@
   <div class="details" v-if="item" id="equipmentDetail">
     <h3>{{item.name}}</h3>
     <hr>
-      <p>Equipment Type: </p>
-      <p>Category: </p>
-      <p>Range: </p>
-      <p>Damaged:
-      </br>Type:
+      <p>Equipment Type: {{equipment_category}}</p>
+      <p>Category: {{weapon_category}}</p>
+      <!-- <p v-if="weapon_range">Weapon Range: {{weapon_range}}</p>
+      <p v-if="damage">Damage: {{damage}}
+      </br>Type:{{damage_type.name}}
+    </br>Dice:{{dice_count}} x D{{dice_value}}
       </p>
-      <p>Weight: </p>
-      <p>Speed: </p>
-      <p>Properties: </p>
-      <p>Cost: </p>
-      <p>Description: </p>
+      <p v-if="weight">Weight: {{weight}}</p>
+      <p v-if="">Speed: </p>
+      <p v-if="properites">Properties: {{properties}}</p>
+      <p>Cost: {{cost.quantity}} {{cost.unit}}</p> -->
+      <!-- <p v-if="desc">Description: {{desc}}</p> -->
   </div>
 </template>
 
@@ -41,7 +42,7 @@ export default {
     // fetchItem() {
     //   fetch(this.equipment.url)
     //   .then(res => res.json())
-    //   .then(details => details.url = detail.results)
+    //   .then(details => details.url = details.results)
     // }
   }
 }
