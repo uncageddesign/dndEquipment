@@ -52,6 +52,7 @@ export default {
 }
 
 input {
+  padding-left: 5px;
   width: 250px;
   height: 20px;
 }

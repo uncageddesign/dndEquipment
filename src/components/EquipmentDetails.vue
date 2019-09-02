@@ -1,19 +1,23 @@
 <template lang="html">
-  <div class="details" v-if="item" id="equipmentDetail">
+  <div class="details" v-if="equipmentDetails" id="equipmentDetail">
     <h3>{{item.name}}</h3>
     <hr>
-      <p>Equipment Type: {{equipment_category}}</p>
-      <p>Category: {{weapon_category}}</p>
-      <!-- <p v-if="weapon_range">Weapon Range: {{weapon_range}}</p>
-      <p v-if="damage">Damage: {{damage}}
-      </br>Type:{{damage_type.name}}
-    </br>Dice:{{dice_count}} x D{{dice_value}}
+      <p>Equipment Type: {{equipmentDetails.equipment_category}}</p>
+      <p v-if="equipmentDetails.vehicle_category">Vehicle Category: {{equipmentDetails.vehicle_category}}</p>
+      <p v-if="equipmentDetails['weapon_category:']">Category: {{equipmentDetails['weapon_category:']}}</p>
+      <p v-if="equipmentDetails.weapon_range">Weapon Range: {{equipmentDetails.weapon_range}}</p>
+      <p v-if="equipmentDetails.damage">Damage Type: {{equipmentDetails.damage.damage_type.name}}
+    </br>Dice: {{equipmentDetails.damage.dice_count}} x D{{equipmentDetails.damage.dice_value}}
       </p>
-      <p v-if="weight">Weight: {{weight}}</p>
-      <p v-if="">Speed: </p>
-      <p v-if="properites">Properties: {{properties}}</p>
-      <p>Cost: {{cost.quantity}} {{cost.unit}}</p> -->
-      <!-- <p v-if="desc">Description: {{desc}}</p> -->
+      <p v-if="equipmentDetails.weight">Weight: {{equipmentDetails.weight}}</p>
+      <p v-if="equipmentDetails.speed">Speed: {{equipmentDetails.speed.quantity}} {{equipmentDetails.speed.unit}}</p>
+      <p v-if="equipmentDetails.capacity">Capacity: {{equipmentDetails.capacity}}</p>
+      <!-- <p v-if="equipmentDetails.properites">Properties: <ul v-for="property in properties">
+                                                          <li>{{equipmentDetails.properties.name}}</li>
+                                                        </ul>
+      </p> -->
+      <p>Cost: {{equipmentDetails.cost.quantity}} {{equipmentDetails.cost.unit}}</p>
+      <p v-if="equipmentDetails.desc">Description: {{equipmentDetails.desc[0]}}</p>
   </div>
 </template>
 
@@ -23,27 +27,30 @@ import {eventBus} from '../main.js';
 export default {
   name: 'equipment-details',
   // props: ['equipment-details'],
-  data(){
+  data() {
     return {
-      item: null
+      item: null,
+      equipmentDetails: null
     }
   },
   mounted(){
-    // this.fetchItem();
 
     eventBus.$on('item-selected', (item) => {
-      this.item = item
+      this.item = item;
+      this.fetchItem();
     })
   },
   updated() {
     // this.fetchItem();
   },
   methods: {
-    // fetchItem() {
-    //   fetch(this.equipment.url)
-    //   .then(res => res.json())
-    //   .then(details => details.url = details.results)
-    // }
+    fetchItem() {
+      fetch(this.item.url)
+      .then(res => res.json())
+      .then(data => {
+        this.equipmentDetails = data;
+      })
+    }
   }
 }
 
@@ -52,7 +59,7 @@ export default {
 <style lang="css" scoped>
 .details {
   border: solid 2px crimson;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   max-width: 800px;
   margin-left: 40px;
